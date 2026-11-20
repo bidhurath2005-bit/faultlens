@@ -1,0 +1,21 @@
+# Pinned runtime dependencies for the demo microservices and traffic generator.
+fastapi==0.165.0
+starlette==1.10.0
+uvicorn[standard]==0.54.0
+pydantic==2.10.3
+pydantic-settings==2.6.1
+sqlalchemy[asyncio]==2.0.36
+asyncpg==0.30.0
+httpx==0.28.1
+psutil==6.1.0
+opentelemetry-api==1.45.2
+opentelemetry-sdk==1.45.2
+opentelemetry-exporter-otlp-proto-grpc==1.45.2
+opentelemetry-instrumentation==0.66b2
+opentelemetry-instrumentation-fastapi==0.66b2
+opentelemetry-instrumentation-httpx==0.66b2
+opentelemetry-instrumentation-asgi==0.66b2
+opentelemetry-semantic-conventions==0.66b2
+opentelemetry-util-http==0.66b2
+email-validator==2.2.0
+opentelemetry-instrumentation-sqlalchemy==0.66b2

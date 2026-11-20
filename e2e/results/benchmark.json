@@ -1,0 +1,334 @@
+{
+  "generated_at": "2026-11-20T05:58:55.193416+00:00",
+  "environment": {
+    "os": "Windows-11-10.0.26200-SP0",
+    "cpu_count": 16,
+    "python": "3.12.10",
+    "docker": "29.9.2",
+    "note": "All containers on one Docker Desktop (WSL2) VM on the same machine as the load generator."
+  },
+  "api_latency_sequential": {
+    "/health": {
+      "n": 30,
+      "p50_ms": 4.7,
+      "p95_ms": 7.65,
+      "p99_ms": 15.37,
+      "mean_ms": 5.41,
+      "max_ms": 18.25
+    },
+    "/services": {
+      "n": 30,
+      "p50_ms": 4.44,
+      "p95_ms": 4.98,
+      "p99_ms": 18.12,
+      "mean_ms": 4.94,
+      "max_ms": 23.45
+    },
+    "/metrics/overview": {
+      "n": 30,
+      "p50_ms": 5.37,
+      "p95_ms": 7.07,
+      "p99_ms": 32.62,
+      "mean_ms": 6.76,
+      "max_ms": 42.98
+    },
+    "/incidents": {
+      "n": 30,
+      "p50_ms": 5.98,
+      "p95_ms": 6.57,
+      "p99_ms": 6.91,
+      "mean_ms": 5.78,
+      "max_ms": 7.0
+    },
+    "/anomalies": {
+      "n": 30,
+      "p50_ms": 4.93,
+      "p95_ms": 6.25,
+      "p99_ms": 6.59,
+      "mean_ms": 4.92,
+      "max_ms": 6.63
+    },
+    "/dependencies": {
+      "n": 30,
+      "p50_ms": 2.86,
+      "p95_ms": 3.91,
+      "p99_ms": 4.18,
+      "mean_ms": 3.07,
+      "max_ms": 4.25
+    },
+    "/logs?minutes=5&limit=50": {
+      "n": 30,
+      "p50_ms": 55.52,
+      "p95_ms": 60.2,
+      "p99_ms": 62.41,
+      "mean_ms": 55.94,
+      "max_ms": 62.94
+    },
+    "/traces?minutes=5&limit=20": {
+      "n": 30,
+      "p50_ms": 14.41,
+      "p95_ms": 16.59,
+      "p99_ms": 17.28,
+      "mean_ms": 14.42,
+      "max_ms": 17.44
+    },
+    "/rca/62": {
+      "n": 30,
+      "p50_ms": 7.5,
+      "p95_ms": 8.98,
+      "p99_ms": 9.69,
+      "mean_ms": 7.6,
+      "max_ms": 9.87
+    }
+  },
+  "api_throughput_services": {
+    "concurrency": 8,
+    "seconds": 15.0,
+    "requests": 6600,
+    "status_counts": {
+      "200": 6600
+    },
+    "throughput_rps": 439.6,
+    "successful_rps": 439.6,
+    "latency": {
+      "n": 6600,
+      "p50_ms": 18.71,
+      "p95_ms": 29.72,
+      "p99_ms": 37.71,
+      "mean_ms": 18.02,
+      "max_ms": 378.88
+    }
+  },
+  "docker_stats_idle_traffic": [
+    {
+      "container": "frontend-1",
+      "cpu": "0.00%",
+      "mem": "15.63MiB"
+    },
+    {
+      "container": "traffic-generator-1",
+      "cpu": "3.34%",
+      "mem": "76.39MiB"
+    },
+    {
+      "container": "worker-1",
+      "cpu": "0.76%",
+      "mem": "219.8MiB"
+    },
+    {
+      "container": "notification-service-1",
+      "cpu": "21.69%",
+      "mem": "90.39MiB"
+    },
+    {
+      "container": "user-service-1",
+      "cpu": "24.20%",
+      "mem": "87.86MiB"
+    },
+    {
+      "container": "payment-service-1",
+      "cpu": "24.08%",
+      "mem": "93.21MiB"
+    },
+    {
+      "container": "order-service-1",
+      "cpu": "24.89%",
+      "mem": "99.56MiB"
+    },
+    {
+      "container": "inventory-service-1",
+      "cpu": "24.68%",
+      "mem": "92.22MiB"
+    },
+    {
+      "container": "api-1",
+      "cpu": "0.42%",
+      "mem": "234.2MiB"
+    },
+    {
+      "container": "grafana-1",
+      "cpu": "0.10%",
+      "mem": "122.4MiB"
+    },
+    {
+      "container": "otel-collector-1",
+      "cpu": "2.15%",
+      "mem": "175.8MiB"
+    },
+    {
+      "container": "postgres-1",
+      "cpu": "2.86%",
+      "mem": "197.3MiB"
+    },
+    {
+      "container": "tempo-1",
+      "cpu": "1.04%",
+      "mem": "275.3MiB"
+    },
+    {
+      "container": "loki-1",
+      "cpu": "0.97%",
+      "mem": "273MiB"
+    },
+    {
+      "container": "redis-1",
+      "cpu": "0.51%",
+      "mem": "13.48MiB"
+    },
+    {
+      "container": "kafka-1",
+      "cpu": "5.36%",
+      "mem": "460.2MiB"
+    },
+    {
+      "container": "prometheus-1",
+      "cpu": "0.02%",
+      "mem": "120.7MiB"
+    }
+  ],
+  "checkout_throughput": {
+    "concurrency": 8,
+    "seconds": 15.0,
+    "requests": 1216,
+    "status_counts": {
+      "201": 1216
+    },
+    "throughput_rps": 80.8,
+    "successful_rps": 80.8,
+    "latency": {
+      "n": 1216,
+      "p50_ms": 90.58,
+      "p95_ms": 145.38,
+      "p99_ms": 255.08,
+      "mean_ms": 98.14,
+      "max_ms": 403.56
+    },
+    "note": "each order = 1 order-service request + 4 downstream service calls + 5 DB transactions; runs on top of the background traffic generator (~8 req/s)"
+  },
+  "docker_stats_under_checkout_load_after": [
+    {
+      "container": "frontend-1",
+      "cpu": "0.00%",
+      "mem": "15.63MiB"
+    },
+    {
+      "container": "traffic-generator-1",
+      "cpu": "22.77%",
+      "mem": "76.13MiB"
+    },
+    {
+      "container": "worker-1",
+      "cpu": "2.04%",
+      "mem": "220.5MiB"
+    },
+    {
+      "container": "notification-service-1",
+      "cpu": "2.45%",
+      "mem": "90.22MiB"
+    },
+    {
+      "container": "user-service-1",
+      "cpu": "2.99%",
+      "mem": "89.02MiB"
+    },
+    {
+      "container": "payment-service-1",
+      "cpu": "2.62%",
+      "mem": "95.17MiB"
+    },
+    {
+      "container": "order-service-1",
+      "cpu": "8.28%",
+      "mem": "103.1MiB"
+    },
+    {
+      "container": "inventory-service-1",
+      "cpu": "6.05%",
+      "mem": "91.64MiB"
+    },
+    {
+      "container": "api-1",
+      "cpu": "18.98%",
+      "mem": "234.9MiB"
+    },
+    {
+      "container": "grafana-1",
+      "cpu": "0.06%",
+      "mem": "122.4MiB"
+    },
+    {
+      "container": "otel-collector-1",
+      "cpu": "1.06%",
+      "mem": "172.1MiB"
+    },
+    {
+      "container": "postgres-1",
+      "cpu": "2.40%",
+      "mem": "202.5MiB"
+    },
+    {
+      "container": "tempo-1",
+      "cpu": "0.60%",
+      "mem": "310.9MiB"
+    },
+    {
+      "container": "loki-1",
+      "cpu": "0.47%",
+      "mem": "273.8MiB"
+    },
+    {
+      "container": "redis-1",
+      "cpu": "2.42%",
+      "mem": "14.1MiB"
+    },
+    {
+      "container": "kafka-1",
+      "cpu": "1.46%",
+      "mem": "459.7MiB"
+    },
+    {
+      "container": "prometheus-1",
+      "cpu": "0.41%",
+      "mem": "134.2MiB"
+    }
+  ],
+  "telemetry_ingestion": {
+    "note": "time from request completion to the record being queryable (includes SDK batch export ~1-5 s, Collector batching 2 s, backend ingestion); polled every 250 ms",
+    "trace_to_tempo": {
+      "n": 5,
+      "p50_ms": 9893.79,
+      "p95_ms": 10059.72,
+      "p99_ms": 10092.41,
+      "mean_ms": 8774.6,
+      "max_ms": 10100.58
+    },
+    "log_to_loki": {
+      "n": 5,
+      "p50_ms": 7131.19,
+      "p95_ms": 7373.0,
+      "p99_ms": 7390.26,
+      "mean_ms": 7062.29,
+      "max_ms": 7394.58
+    }
+  },
+  "worker": {
+    "detection_cycle": {
+      "p50_s": 0.0364,
+      "p95_s": 0.1844,
+      "count_30m": 180.5168,
+      "mean_s": 0.0534
+    },
+    "rca_investigation": {
+      "p50_s": 0.3594,
+      "p95_s": 0.4859,
+      "count_30m": 9.0258,
+      "mean_s": 0.3436
+    },
+    "event_bridge_lag": {
+      "p50_s": 0.005,
+      "p95_s": 0.0095,
+      "count_30m": 177.5079,
+      "mean_s": 0.0023
+    }
+  }
+}

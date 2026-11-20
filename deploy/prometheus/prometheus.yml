@@ -1,0 +1,17 @@
+global:
+  scrape_interval: 5s
+  evaluation_interval: 5s
+
+scrape_configs:
+  # Application metrics pushed via OTLP and exposed by the Collector's Prometheus exporter.
+  - job_name: otel-collector
+    honor_labels: true
+    static_configs:
+      - targets: ["otel-collector:8889"]
+  # FaultLens worker: synthetic availability probes + platform self-metrics.
+  - job_name: faultlens-worker
+    static_configs:
+      - targets: ["faultlens-worker:9464"]
+  - job_name: prometheus
+    static_configs:
+      - targets: ["localhost:9090"]

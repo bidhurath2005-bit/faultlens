@@ -1,0 +1,631 @@
+{
+  "dataset": "synthetic-v1",
+  "dataset_description": "SYNTHETIC: 30 scenarios x 480 steps (15 s each = 2 h), seeds [11, 22, 33]. 8 anomaly types (latency, errors, traffic, CPU, memory leak, pool saturation, DB slowdown, outage) each a labelled 60-step (15 min) segment starting at step 300, plus 2 benign variation types (gradual load growth, noisy latency) with no labels. Point-level labels.",
+  "config": {
+    "zscore_threshold": 4.0,
+    "ewma_alpha": 0.1,
+    "ewma_ratio_threshold": 2.0,
+    "iforest_threshold": -0.09,
+    "confirm_cycles": 2
+  },
+  "overall": {
+    "threshold": {
+      "precision": 1.0,
+      "recall": 0.7056,
+      "f1": 0.8274,
+      "false_positive_rate": 0.0,
+      "tp": 1016,
+      "fp": 0,
+      "fn": 424,
+      "tn": 9120
+    },
+    "zscore": {
+      "precision": 1.0,
+      "recall": 0.9667,
+      "f1": 0.9831,
+      "false_positive_rate": 0.0,
+      "tp": 1392,
+      "fp": 0,
+      "fn": 48,
+      "tn": 9120
+    },
+    "moving_average": {
+      "precision": 0.8631,
+      "recall": 0.1882,
+      "f1": 0.309,
+      "false_positive_rate": 0.00471,
+      "tp": 271,
+      "fp": 43,
+      "fn": 1169,
+      "tn": 9077
+    },
+    "isolation_forest": {
+      "precision": 1.0,
+      "recall": 0.5306,
+      "f1": 0.6933,
+      "false_positive_rate": 0.0,
+      "tp": 764,
+      "fp": 0,
+      "fn": 676,
+      "tn": 9120
+    },
+    "ensemble": {
+      "precision": 0.97,
+      "recall": 0.9667,
+      "f1": 0.9683,
+      "false_positive_rate": 0.00471,
+      "tp": 1392,
+      "fp": 43,
+      "fn": 48,
+      "tn": 9077
+    }
+  },
+  "per_type": {
+    "latency_spike": {
+      "threshold": {
+        "precision": 1.0,
+        "recall": 0.9611,
+        "f1": 0.9802,
+        "false_positive_rate": 0.0,
+        "tp": 173,
+        "fp": 0,
+        "fn": 7,
+        "tn": 876
+      },
+      "zscore": {
+        "precision": 1.0,
+        "recall": 0.9833,
+        "f1": 0.9916,
+        "false_positive_rate": 0.0,
+        "tp": 177,
+        "fp": 0,
+        "fn": 3,
+        "tn": 876
+      },
+      "moving_average": {
+        "precision": 1.0,
+        "recall": 0.2056,
+        "f1": 0.341,
+        "false_positive_rate": 0.0,
+        "tp": 37,
+        "fp": 0,
+        "fn": 143,
+        "tn": 876
+      },
+      "isolation_forest": {
+        "precision": 1.0,
+        "recall": 0.4778,
+        "f1": 0.6466,
+        "false_positive_rate": 0.0,
+        "tp": 86,
+        "fp": 0,
+        "fn": 94,
+        "tn": 876
+      },
+      "ensemble": {
+        "precision": 1.0,
+        "recall": 0.9833,
+        "f1": 0.9916,
+        "false_positive_rate": 0.0,
+        "tp": 177,
+        "fp": 0,
+        "fn": 3,
+        "tn": 876
+      }
+    },
+    "error_spike": {
+      "threshold": {
+        "precision": 1.0,
+        "recall": 0.9833,
+        "f1": 0.9916,
+        "false_positive_rate": 0.0,
+        "tp": 177,
+        "fp": 0,
+        "fn": 3,
+        "tn": 876
+      },
+      "zscore": {
+        "precision": 1.0,
+        "recall": 0.9833,
+        "f1": 0.9916,
+        "false_positive_rate": 0.0,
+        "tp": 177,
+        "fp": 0,
+        "fn": 3,
+        "tn": 876
+      },
+      "moving_average": {
+        "precision": 1.0,
+        "recall": 0.2056,
+        "f1": 0.341,
+        "false_positive_rate": 0.0,
+        "tp": 37,
+        "fp": 0,
+        "fn": 143,
+        "tn": 876
+      },
+      "isolation_forest": {
+        "precision": 1.0,
+        "recall": 0.3889,
+        "f1": 0.56,
+        "false_positive_rate": 0.0,
+        "tp": 70,
+        "fp": 0,
+        "fn": 110,
+        "tn": 876
+      },
+      "ensemble": {
+        "precision": 1.0,
+        "recall": 0.9833,
+        "f1": 0.9916,
+        "false_positive_rate": 0.0,
+        "tp": 177,
+        "fp": 0,
+        "fn": 3,
+        "tn": 876
+      }
+    },
+    "traffic_spike": {
+      "threshold": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "false_positive_rate": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 180,
+        "tn": 876
+      },
+      "zscore": {
+        "precision": 1.0,
+        "recall": 0.9833,
+        "f1": 0.9916,
+        "false_positive_rate": 0.0,
+        "tp": 177,
+        "fp": 0,
+        "fn": 3,
+        "tn": 876
+      },
+      "moving_average": {
+        "precision": 0.4557,
+        "recall": 0.2,
+        "f1": 0.278,
+        "false_positive_rate": 0.04909,
+        "tp": 36,
+        "fp": 43,
+        "fn": 144,
+        "tn": 833
+      },
+      "isolation_forest": {
+        "precision": 1.0,
+        "recall": 0.5667,
+        "f1": 0.7234,
+        "false_positive_rate": 0.0,
+        "tp": 102,
+        "fp": 0,
+        "fn": 78,
+        "tn": 876
+      },
+      "ensemble": {
+        "precision": 0.8045,
+        "recall": 0.9833,
+        "f1": 0.885,
+        "false_positive_rate": 0.04909,
+        "tp": 177,
+        "fp": 43,
+        "fn": 3,
+        "tn": 833
+      }
+    },
+    "cpu_saturation": {
+      "threshold": {
+        "precision": 1.0,
+        "recall": 0.9722,
+        "f1": 0.9859,
+        "false_positive_rate": 0.0,
+        "tp": 175,
+        "fp": 0,
+        "fn": 5,
+        "tn": 876
+      },
+      "zscore": {
+        "precision": 1.0,
+        "recall": 0.9833,
+        "f1": 0.9916,
+        "false_positive_rate": 0.0,
+        "tp": 177,
+        "fp": 0,
+        "fn": 3,
+        "tn": 876
+      },
+      "moving_average": {
+        "precision": 1.0,
+        "recall": 0.2,
+        "f1": 0.3333,
+        "false_positive_rate": 0.0,
+        "tp": 36,
+        "fp": 0,
+        "fn": 144,
+        "tn": 876
+      },
+      "isolation_forest": {
+        "precision": 1.0,
+        "recall": 0.4889,
+        "f1": 0.6567,
+        "false_positive_rate": 0.0,
+        "tp": 88,
+        "fp": 0,
+        "fn": 92,
+        "tn": 876
+      },
+      "ensemble": {
+        "precision": 1.0,
+        "recall": 0.9833,
+        "f1": 0.9916,
+        "false_positive_rate": 0.0,
+        "tp": 177,
+        "fp": 0,
+        "fn": 3,
+        "tn": 876
+      }
+    },
+    "memory_leak": {
+      "threshold": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "false_positive_rate": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 180,
+        "tn": 876
+      },
+      "zscore": {
+        "precision": 1.0,
+        "recall": 0.85,
+        "f1": 0.9189,
+        "false_positive_rate": 0.0,
+        "tp": 153,
+        "fp": 0,
+        "fn": 27,
+        "tn": 876
+      },
+      "moving_average": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "false_positive_rate": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 180,
+        "tn": 876
+      },
+      "isolation_forest": {
+        "precision": 1.0,
+        "recall": 0.5222,
+        "f1": 0.6861,
+        "false_positive_rate": 0.0,
+        "tp": 94,
+        "fp": 0,
+        "fn": 86,
+        "tn": 876
+      },
+      "ensemble": {
+        "precision": 1.0,
+        "recall": 0.85,
+        "f1": 0.9189,
+        "false_positive_rate": 0.0,
+        "tp": 153,
+        "fp": 0,
+        "fn": 27,
+        "tn": 876
+      }
+    },
+    "pool_saturation": {
+      "threshold": {
+        "precision": 1.0,
+        "recall": 0.9833,
+        "f1": 0.9916,
+        "false_positive_rate": 0.0,
+        "tp": 177,
+        "fp": 0,
+        "fn": 3,
+        "tn": 876
+      },
+      "zscore": {
+        "precision": 1.0,
+        "recall": 0.9833,
+        "f1": 0.9916,
+        "false_positive_rate": 0.0,
+        "tp": 177,
+        "fp": 0,
+        "fn": 3,
+        "tn": 876
+      },
+      "moving_average": {
+        "precision": 1.0,
+        "recall": 0.2333,
+        "f1": 0.3784,
+        "false_positive_rate": 0.0,
+        "tp": 42,
+        "fp": 0,
+        "fn": 138,
+        "tn": 876
+      },
+      "isolation_forest": {
+        "precision": 1.0,
+        "recall": 0.6222,
+        "f1": 0.7671,
+        "false_positive_rate": 0.0,
+        "tp": 112,
+        "fp": 0,
+        "fn": 68,
+        "tn": 876
+      },
+      "ensemble": {
+        "precision": 1.0,
+        "recall": 0.9833,
+        "f1": 0.9916,
+        "false_positive_rate": 0.0,
+        "tp": 177,
+        "fp": 0,
+        "fn": 3,
+        "tn": 876
+      }
+    },
+    "db_slowdown": {
+      "threshold": {
+        "precision": 1.0,
+        "recall": 0.7611,
+        "f1": 0.8644,
+        "false_positive_rate": 0.0,
+        "tp": 137,
+        "fp": 0,
+        "fn": 43,
+        "tn": 876
+      },
+      "zscore": {
+        "precision": 1.0,
+        "recall": 0.9833,
+        "f1": 0.9916,
+        "false_positive_rate": 0.0,
+        "tp": 177,
+        "fp": 0,
+        "fn": 3,
+        "tn": 876
+      },
+      "moving_average": {
+        "precision": 1.0,
+        "recall": 0.2278,
+        "f1": 0.371,
+        "false_positive_rate": 0.0,
+        "tp": 41,
+        "fp": 0,
+        "fn": 139,
+        "tn": 876
+      },
+      "isolation_forest": {
+        "precision": 1.0,
+        "recall": 0.5667,
+        "f1": 0.7234,
+        "false_positive_rate": 0.0,
+        "tp": 102,
+        "fp": 0,
+        "fn": 78,
+        "tn": 876
+      },
+      "ensemble": {
+        "precision": 1.0,
+        "recall": 0.9833,
+        "f1": 0.9916,
+        "false_positive_rate": 0.0,
+        "tp": 177,
+        "fp": 0,
+        "fn": 3,
+        "tn": 876
+      }
+    },
+    "outage_traffic_drop": {
+      "threshold": {
+        "precision": 1.0,
+        "recall": 0.9833,
+        "f1": 0.9916,
+        "false_positive_rate": 0.0,
+        "tp": 177,
+        "fp": 0,
+        "fn": 3,
+        "tn": 876
+      },
+      "zscore": {
+        "precision": 1.0,
+        "recall": 0.9833,
+        "f1": 0.9916,
+        "false_positive_rate": 0.0,
+        "tp": 177,
+        "fp": 0,
+        "fn": 3,
+        "tn": 876
+      },
+      "moving_average": {
+        "precision": 1.0,
+        "recall": 0.2333,
+        "f1": 0.3784,
+        "false_positive_rate": 0.0,
+        "tp": 42,
+        "fp": 0,
+        "fn": 138,
+        "tn": 876
+      },
+      "isolation_forest": {
+        "precision": 1.0,
+        "recall": 0.6111,
+        "f1": 0.7586,
+        "false_positive_rate": 0.0,
+        "tp": 110,
+        "fp": 0,
+        "fn": 70,
+        "tn": 876
+      },
+      "ensemble": {
+        "precision": 1.0,
+        "recall": 0.9833,
+        "f1": 0.9916,
+        "false_positive_rate": 0.0,
+        "tp": 177,
+        "fp": 0,
+        "fn": 3,
+        "tn": 876
+      }
+    },
+    "gradual_traffic_growth": {
+      "threshold": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "false_positive_rate": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 1056
+      },
+      "zscore": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "false_positive_rate": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 1056
+      },
+      "moving_average": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "false_positive_rate": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 1056
+      },
+      "isolation_forest": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "false_positive_rate": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 1056
+      },
+      "ensemble": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "false_positive_rate": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 1056
+      }
+    },
+    "noisy_latency": {
+      "threshold": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "false_positive_rate": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 1056
+      },
+      "zscore": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "false_positive_rate": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 1056
+      },
+      "moving_average": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "false_positive_rate": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 1056
+      },
+      "isolation_forest": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "false_positive_rate": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 1056
+      },
+      "ensemble": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "false_positive_rate": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 1056
+      }
+    }
+  },
+  "detection_delay_steps": {
+    "latency_spike": [
+      1,
+      1,
+      1
+    ],
+    "error_spike": [
+      1,
+      1,
+      1
+    ],
+    "traffic_spike": [
+      1,
+      1,
+      1
+    ],
+    "cpu_saturation": [
+      1,
+      1,
+      1
+    ],
+    "memory_leak": [
+      9,
+      9,
+      9
+    ],
+    "pool_saturation": [
+      1,
+      1,
+      1
+    ],
+    "db_slowdown": [
+      1,
+      1,
+      1
+    ],
+    "outage_traffic_drop": [
+      1,
+      1,
+      1
+    ]
+  },
+  "detection_delay_note": "steps of 15 s from onset to first ensemble detection (-1 = missed)",
+  "runtime_s": 296.6,
+  "points_evaluated": 10560,
+  "anomalous_points": 1440
+}

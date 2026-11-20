@@ -1,0 +1,52 @@
+{
+  "uid": "faultlens-services",
+  "title": "FaultLens – Demo services (RED + resources)",
+  "schemaVersion": 39,
+  "time": { "from": "now-30m", "to": "now" },
+  "refresh": "10s",
+  "templating": {
+    "list": [
+      {
+        "name": "service", "type": "query", "datasource": { "type": "prometheus", "uid": "prometheus" },
+        "query": "label_values(faultlens_http_server_requests_total, service_name)", "includeAll": true, "multi": true, "current": { "text": "All", "value": "$__all" }
+      }
+    ]
+  },
+  "panels": [
+    {
+      "type": "timeseries", "title": "Requests / s", "gridPos": { "x": 0, "y": 0, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" }, "fieldConfig": { "defaults": { "unit": "reqps" } },
+      "targets": [{ "expr": "sum by (service_name) (rate(faultlens_http_server_requests_total{service_name=~\"$service\"}[1m]))", "legendFormat": "{{service_name}}" }]
+    },
+    {
+      "type": "timeseries", "title": "Error rate (5xx)", "gridPos": { "x": 12, "y": 0, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" }, "fieldConfig": { "defaults": { "unit": "percentunit" } },
+      "targets": [{ "expr": "(sum by (service_name) (rate(faultlens_http_server_requests_total{status_class=\"5xx\",service_name=~\"$service\"}[1m])) or 0 * sum by (service_name) (rate(faultlens_http_server_requests_total{service_name=~\"$service\"}[1m]))) / sum by (service_name) (rate(faultlens_http_server_requests_total{service_name=~\"$service\"}[1m]))", "legendFormat": "{{service_name}}" }]
+    },
+    {
+      "type": "timeseries", "title": "P95 latency", "gridPos": { "x": 0, "y": 8, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" }, "fieldConfig": { "defaults": { "unit": "s" } },
+      "targets": [{ "expr": "histogram_quantile(0.95, sum by (service_name, le) (rate(faultlens_http_server_duration_seconds_bucket{service_name=~\"$service\"}[1m])))", "legendFormat": "{{service_name}}" }]
+    },
+    {
+      "type": "timeseries", "title": "DB pool in use / max", "gridPos": { "x": 12, "y": 8, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" }, "fieldConfig": { "defaults": { "unit": "percentunit", "max": 1 } },
+      "targets": [{ "expr": "max by (service_name) (faultlens_db_pool_connections_ratio{state=\"in_use\",service_name=~\"$service\"}) / on (service_name) max by (service_name) (faultlens_db_pool_connections_ratio{state=\"max\"})", "legendFormat": "{{service_name}}" }]
+    },
+    {
+      "type": "timeseries", "title": "CPU (cores)", "gridPos": { "x": 0, "y": 16, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [{ "expr": "avg by (service_name) (faultlens_process_cpu_utilization_ratio{service_name=~\"$service\"})", "legendFormat": "{{service_name}}" }]
+    },
+    {
+      "type": "timeseries", "title": "Memory RSS", "gridPos": { "x": 12, "y": 16, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" }, "fieldConfig": { "defaults": { "unit": "bytes" } },
+      "targets": [{ "expr": "avg by (service_name) (faultlens_process_memory_bytes{kind=\"rss\",service_name=~\"$service\"})", "legendFormat": "{{service_name}}" }]
+    },
+    {
+      "type": "logs", "title": "Errors & warnings (click a line → trace)", "gridPos": { "x": 0, "y": 24, "w": 24, "h": 10 },
+      "datasource": { "type": "loki", "uid": "loki" },
+      "targets": [{ "expr": "{service_namespace=\"faultlens-demo\", service_name=~\"$service\"} | severity_text=~\"ERROR|WARN|WARNING\"" }]
+    }
+  ]
+}

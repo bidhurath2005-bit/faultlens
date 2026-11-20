@@ -1,0 +1,7 @@
+* text=auto eol=lf
+*.ps1 text eol=crlf
+*.png binary
+*.jpg binary
+*.joblib binary
+# Evaluation outputs are stored byte for byte: rca_evaluation.json records SHA-256 hashes of its source files.
+e2e/results/** -text

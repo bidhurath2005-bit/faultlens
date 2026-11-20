@@ -1,0 +1,4 @@
+extend = "../backend/ruff.toml"
+[lint.per-file-ignores]
+"benchmark.py" = ["S607"]
+"test_*.py" = ["S", "B"]

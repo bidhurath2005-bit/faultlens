@@ -1,0 +1,20 @@
+# FaultLens platform backend — pinned runtime dependencies (Python 3.12).
+fastapi==0.165.0
+starlette==1.10.0
+uvicorn[standard]==0.54.0
+pydantic==2.10.3
+pydantic-settings==2.6.1
+email-validator==2.2.0
+sqlalchemy[asyncio]==2.0.36
+asyncpg==0.30.0
+alembic==1.14.0
+redis==5.2.1
+aiokafka==0.12.0
+httpx==0.28.1
+numpy==2.1.3
+pandas==2.2.3
+scikit-learn==1.5.2
+joblib==1.4.2
+argon2-cffi==23.1.0
+PyJWT==2.15.1
+prometheus-client==0.21.1

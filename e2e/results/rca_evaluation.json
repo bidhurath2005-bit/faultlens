@@ -1,0 +1,667 @@
+{
+  "generated_at": "2026-11-20T05:54:05.476939+00:00",
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.10"
+  },
+  "scenarios_run": 8,
+  "detected": 8,
+  "auto_top1": 1.0,
+  "auto_top3": 1.0,
+  "t90_top1": 1.0,
+  "t90_top3": 1.0,
+  "median_detection_latency_s": 29.0,
+  "wall_time_min": null,
+  "note": "Accuracy denominators include undetected scenarios (counted as misses). Merged from separate runs: first four on 2026-11-19, remaining four run one at a time on 2026-11-20 (1 run per scenario); wall_time_min not applicable to a merged result.",
+  "merged_from": [
+    {
+      "file": "rca_evaluation.first4.json",
+      "sha256": "656dccfb8d98ff834388cb4c12349c958afd2110b841971a0f1777e962db40f2",
+      "scenarios": [
+        "payment-pool",
+        "inventory-db-slow",
+        "payment-timeout",
+        "inventory-cpu"
+      ]
+    },
+    {
+      "file": "rca_evaluation.inventory-down.json",
+      "sha256": "f40061c1bd89f45f06d48bbeb24e2ab079e169b29fb90f262104c8ca7a083462",
+      "scenarios": [
+        "inventory-down"
+      ]
+    },
+    {
+      "file": "rca_evaluation.payment-500.json",
+      "sha256": "57cd9ef3e2e981704429b0907358c693fa26487384afe60486f77ebe16fa8855",
+      "scenarios": [
+        "payment-500"
+      ]
+    },
+    {
+      "file": "rca_evaluation.traffic-spike.json",
+      "sha256": "bb80c39895e3745f79ab5616ec58bdafc78ec2f99d32eec092dfe14435497cd3",
+      "scenarios": [
+        "traffic-spike"
+      ]
+    },
+    {
+      "file": "rca_evaluation.notification-memory.json",
+      "sha256": "694c21e0a9d0fb8dcda2a4fc81f4cdb9a014278b6d7e3f82c149875ed6a56485",
+      "scenarios": [
+        "notification-memory"
+      ]
+    }
+  ],
+  "results": [
+    {
+      "scenario": "payment-pool",
+      "expected": {
+        "cause": "db_pool_exhaustion",
+        "service": "payment-service"
+      },
+      "injected_at": "2026-11-19T17:35:52.663693+00:00",
+      "detected": true,
+      "incident_id": 19,
+      "detection_latency_s": 19.2,
+      "methods_fired": [
+        "threshold"
+      ],
+      "auto": {
+        "investigation_id": 43,
+        "status": "completed",
+        "completed_after_injection_s": 39.5,
+        "duration_ms": 275.5,
+        "rank_of_truth": 1,
+        "findings": [
+          {
+            "rank": 1,
+            "cause": "db_pool_exhaustion",
+            "service": "payment-service",
+            "score": 1.0,
+            "confidence": "high"
+          },
+          {
+            "rank": 2,
+            "cause": "http_500_spike",
+            "service": "payment-service",
+            "score": 0.75,
+            "confidence": "high"
+          },
+          {
+            "rank": 3,
+            "cause": "downstream_failure",
+            "service": "payment-service",
+            "score": 0.4814,
+            "confidence": "low"
+          },
+          {
+            "rank": 4,
+            "cause": "service_timeout",
+            "service": "payment-service",
+            "score": 0.3,
+            "confidence": "insufficient"
+          },
+          {
+            "rank": 5,
+            "cause": "http_500_spike",
+            "service": "order-service",
+            "score": 0.2015,
+            "confidence": "insufficient"
+          }
+        ]
+      },
+      "t90": {
+        "status": "completed",
+        "duration_ms": 306.6,
+        "rank_of_truth": 1,
+        "findings": [
+          {
+            "rank": 1,
+            "cause": "db_pool_exhaustion",
+            "service": "payment-service",
+            "score": 1.0,
+            "confidence": "high"
+          },
+          {
+            "rank": 2,
+            "cause": "http_500_spike",
+            "service": "payment-service",
+            "score": 0.75,
+            "confidence": "high"
+          },
+          {
+            "rank": 3,
+            "cause": "downstream_failure",
+            "service": "payment-service",
+            "score": 0.5825,
+            "confidence": "medium"
+          },
+          {
+            "rank": 4,
+            "cause": "service_timeout",
+            "service": "payment-service",
+            "score": 0.3,
+            "confidence": "insufficient"
+          },
+          {
+            "rank": 5,
+            "cause": "http_500_spike",
+            "service": "order-service",
+            "score": 0.2015,
+            "confidence": "insufficient"
+          }
+        ]
+      },
+      "repeat": 0,
+      "recovery_verified_after_reset_s": 147.6
+    },
+    {
+      "scenario": "inventory-db-slow",
+      "expected": {
+        "cause": "db_query_latency",
+        "service": "inventory-service"
+      },
+      "injected_at": "2026-11-19T17:42:22.880774+00:00",
+      "detected": true,
+      "incident_id": 20,
+      "detection_latency_s": 29.0,
+      "methods_fired": [
+        "isolation_forest",
+        "moving_average",
+        "threshold",
+        "zscore"
+      ],
+      "auto": {
+        "investigation_id": 48,
+        "status": "completed",
+        "completed_after_injection_s": 49.3,
+        "duration_ms": 330.1,
+        "rank_of_truth": 1,
+        "findings": [
+          {
+            "rank": 1,
+            "cause": "db_query_latency",
+            "service": "inventory-service",
+            "score": 1.0,
+            "confidence": "high"
+          },
+          {
+            "rank": 2,
+            "cause": "db_pool_exhaustion",
+            "service": "inventory-service",
+            "score": 0.3097,
+            "confidence": "insufficient"
+          },
+          {
+            "rank": 3,
+            "cause": "service_timeout",
+            "service": "inventory-service",
+            "score": 0.3,
+            "confidence": "insufficient"
+          },
+          {
+            "rank": 4,
+            "cause": "service_timeout",
+            "service": "order-service",
+            "score": 0.205,
+            "confidence": "insufficient"
+          }
+        ]
+      },
+      "t90": {
+        "status": "completed",
+        "duration_ms": 418.1,
+        "rank_of_truth": 1,
+        "findings": [
+          {
+            "rank": 1,
+            "cause": "db_query_latency",
+            "service": "inventory-service",
+            "score": 1.0,
+            "confidence": "high"
+          },
+          {
+            "rank": 2,
+            "cause": "db_pool_exhaustion",
+            "service": "inventory-service",
+            "score": 0.315,
+            "confidence": "insufficient"
+          },
+          {
+            "rank": 3,
+            "cause": "service_timeout",
+            "service": "inventory-service",
+            "score": 0.3,
+            "confidence": "insufficient"
+          },
+          {
+            "rank": 4,
+            "cause": "service_timeout",
+            "service": "order-service",
+            "score": 0.205,
+            "confidence": "insufficient"
+          }
+        ]
+      },
+      "repeat": 0,
+      "recovery_verified_after_reset_s": 102.4
+    },
+    {
+      "scenario": "payment-timeout",
+      "expected": {
+        "cause": "service_timeout",
+        "service": "payment-service"
+      },
+      "injected_at": "2026-11-19T17:48:08.032168+00:00",
+      "detected": true,
+      "incident_id": 21,
+      "detection_latency_s": 23.8,
+      "methods_fired": [
+        "moving_average",
+        "threshold",
+        "zscore"
+      ],
+      "auto": {
+        "investigation_id": 51,
+        "status": "completed",
+        "completed_after_injection_s": 44.3,
+        "duration_ms": 288.1,
+        "rank_of_truth": 1,
+        "findings": [
+          {
+            "rank": 1,
+            "cause": "service_timeout",
+            "service": "payment-service",
+            "score": 1.0,
+            "confidence": "high"
+          },
+          {
+            "rank": 2,
+            "cause": "http_500_spike",
+            "service": "order-service",
+            "score": 0.201,
+            "confidence": "insufficient"
+          },
+          {
+            "rank": 3,
+            "cause": "service_timeout",
+            "service": "order-service",
+            "score": 0.201,
+            "confidence": "insufficient"
+          },
+          {
+            "rank": 4,
+            "cause": "downstream_failure",
+            "service": "payment-service",
+            "score": 0.0899,
+            "confidence": "insufficient"
+          }
+        ]
+      },
+      "t90": {
+        "status": "completed",
+        "duration_ms": 294.4,
+        "rank_of_truth": 1,
+        "findings": [
+          {
+            "rank": 1,
+            "cause": "service_timeout",
+            "service": "payment-service",
+            "score": 1.0,
+            "confidence": "high"
+          },
+          {
+            "rank": 2,
+            "cause": "http_500_spike",
+            "service": "order-service",
+            "score": 0.201,
+            "confidence": "insufficient"
+          },
+          {
+            "rank": 3,
+            "cause": "service_timeout",
+            "service": "order-service",
+            "score": 0.201,
+            "confidence": "insufficient"
+          },
+          {
+            "rank": 4,
+            "cause": "downstream_failure",
+            "service": "payment-service",
+            "score": 0.1823,
+            "confidence": "insufficient"
+          }
+        ]
+      },
+      "repeat": 0,
+      "recovery_verified_after_reset_s": 151.5
+    },
+    {
+      "scenario": "inventory-cpu",
+      "expected": {
+        "cause": "high_cpu",
+        "service": "inventory-service"
+      },
+      "injected_at": "2026-11-19T17:54:42.038724+00:00",
+      "detected": true,
+      "incident_id": 22,
+      "detection_latency_s": 29.8,
+      "methods_fired": [
+        "isolation_forest",
+        "moving_average",
+        "zscore"
+      ],
+      "auto": {
+        "investigation_id": 55,
+        "status": "completed",
+        "completed_after_injection_s": 50.2,
+        "duration_ms": 304.7,
+        "rank_of_truth": 1,
+        "findings": [
+          {
+            "rank": 1,
+            "cause": "high_cpu",
+            "service": "inventory-service",
+            "score": 0.7389,
+            "confidence": "high"
+          },
+          {
+            "rank": 2,
+            "cause": "service_timeout",
+            "service": "inventory-service",
+            "score": 0.4204,
+            "confidence": "low"
+          },
+          {
+            "rank": 3,
+            "cause": "service_timeout",
+            "service": "order-service",
+            "score": 0.2236,
+            "confidence": "insufficient"
+          }
+        ]
+      },
+      "t90": {
+        "status": "completed",
+        "duration_ms": 299.2,
+        "rank_of_truth": 1,
+        "findings": [
+          {
+            "rank": 1,
+            "cause": "high_cpu",
+            "service": "inventory-service",
+            "score": 0.75,
+            "confidence": "high"
+          },
+          {
+            "rank": 2,
+            "cause": "service_timeout",
+            "service": "inventory-service",
+            "score": 0.4726,
+            "confidence": "low"
+          },
+          {
+            "rank": 3,
+            "cause": "service_timeout",
+            "service": "order-service",
+            "score": 0.2265,
+            "confidence": "insufficient"
+          }
+        ]
+      },
+      "repeat": 0,
+      "recovery_verified_after_reset_s": 161.6
+    },
+    {
+      "scenario": "inventory-down",
+      "expected": {
+        "cause": "downstream_failure",
+        "service": "inventory-service"
+      },
+      "injected_at": "2026-11-20T05:19:56.298747+00:00",
+      "detected": true,
+      "incident_id": 58,
+      "detection_latency_s": 23.7,
+      "methods_fired": [
+        "isolation_forest",
+        "moving_average",
+        "threshold",
+        "zscore"
+      ],
+      "auto": {
+        "investigation_id": 99,
+        "status": "completed",
+        "completed_after_injection_s": 44.0,
+        "duration_ms": 215.1,
+        "rank_of_truth": 1,
+        "findings": [
+          {
+            "rank": 1,
+            "cause": "downstream_failure",
+            "service": "inventory-service",
+            "score": 0.8268,
+            "confidence": "high"
+          },
+          {
+            "rank": 2,
+            "cause": "http_500_spike",
+            "service": "inventory-service",
+            "score": 0.6,
+            "confidence": "medium"
+          },
+          {
+            "rank": 3,
+            "cause": "http_500_spike",
+            "service": "order-service",
+            "score": 0.2,
+            "confidence": "insufficient"
+          }
+        ]
+      },
+      "t90": {
+        "status": "completed",
+        "duration_ms": 285.1,
+        "rank_of_truth": 1,
+        "findings": [
+          {
+            "rank": 1,
+            "cause": "downstream_failure",
+            "service": "inventory-service",
+            "score": 0.9098,
+            "confidence": "high"
+          },
+          {
+            "rank": 2,
+            "cause": "http_500_spike",
+            "service": "inventory-service",
+            "score": 0.6,
+            "confidence": "medium"
+          },
+          {
+            "rank": 3,
+            "cause": "http_500_spike",
+            "service": "order-service",
+            "score": 0.2,
+            "confidence": "insufficient"
+          }
+        ]
+      },
+      "repeat": 0,
+      "recovery_verified_after_reset_s": 124.6
+    },
+    {
+      "scenario": "payment-500",
+      "expected": {
+        "cause": "http_500_spike",
+        "service": "payment-service"
+      },
+      "injected_at": "2026-11-20T05:29:20.825824+00:00",
+      "detected": true,
+      "incident_id": 59,
+      "detection_latency_s": 29.2,
+      "methods_fired": [
+        "isolation_forest",
+        "moving_average",
+        "threshold",
+        "zscore"
+      ],
+      "auto": {
+        "investigation_id": 104,
+        "status": "completed",
+        "completed_after_injection_s": 134.7,
+        "duration_ms": 421.3,
+        "rank_of_truth": 1,
+        "findings": [
+          {
+            "rank": 1,
+            "cause": "http_500_spike",
+            "service": "payment-service",
+            "score": 1.0,
+            "confidence": "high"
+          },
+          {
+            "rank": 2,
+            "cause": "downstream_failure",
+            "service": "payment-service",
+            "score": 0.5586,
+            "confidence": "medium"
+          },
+          {
+            "rank": 3,
+            "cause": "http_500_spike",
+            "service": "order-service",
+            "score": 0.2,
+            "confidence": "insufficient"
+          }
+        ]
+      },
+      "t90": {
+        "status": "completed",
+        "duration_ms": 511.4,
+        "rank_of_truth": 1,
+        "findings": [
+          {
+            "rank": 1,
+            "cause": "http_500_spike",
+            "service": "payment-service",
+            "score": 1.0,
+            "confidence": "high"
+          },
+          {
+            "rank": 2,
+            "cause": "downstream_failure",
+            "service": "payment-service",
+            "score": 0.5593,
+            "confidence": "medium"
+          },
+          {
+            "rank": 3,
+            "cause": "http_500_spike",
+            "service": "order-service",
+            "score": 0.2,
+            "confidence": "insufficient"
+          }
+        ]
+      },
+      "repeat": 0,
+      "recovery_verified_after_reset_s": 114.7
+    },
+    {
+      "scenario": "traffic-spike",
+      "expected": {
+        "cause": "traffic_overload",
+        "service": null
+      },
+      "injected_at": "2026-11-20T05:38:57.005759+00:00",
+      "detected": true,
+      "incident_id": 60,
+      "detection_latency_s": 23.0,
+      "methods_fired": [
+        "isolation_forest",
+        "moving_average",
+        "zscore"
+      ],
+      "auto": {
+        "investigation_id": 107,
+        "status": "completed",
+        "completed_after_injection_s": 43.3,
+        "duration_ms": 246.3,
+        "rank_of_truth": 1,
+        "findings": [
+          {
+            "rank": 1,
+            "cause": "traffic_overload",
+            "service": "inventory-service",
+            "score": 0.8,
+            "confidence": "high"
+          }
+        ]
+      },
+      "t90": {
+        "status": "completed",
+        "duration_ms": 253.6,
+        "rank_of_truth": 1,
+        "findings": [
+          {
+            "rank": 1,
+            "cause": "traffic_overload",
+            "service": "inventory-service",
+            "score": 0.8,
+            "confidence": "high"
+          }
+        ]
+      },
+      "repeat": 0,
+      "recovery_verified_after_reset_s": 95.4
+    },
+    {
+      "scenario": "notification-memory",
+      "expected": {
+        "cause": "memory_pressure",
+        "service": "notification-service"
+      },
+      "injected_at": "2026-11-20T05:46:32.122295+00:00",
+      "detected": true,
+      "incident_id": 62,
+      "detection_latency_s": 37.9,
+      "methods_fired": [
+        "isolation_forest",
+        "moving_average",
+        "zscore"
+      ],
+      "auto": {
+        "investigation_id": 111,
+        "status": "completed",
+        "completed_after_injection_s": 58.4,
+        "duration_ms": 283.5,
+        "rank_of_truth": 1,
+        "findings": [
+          {
+            "rank": 1,
+            "cause": "memory_pressure",
+            "service": "notification-service",
+            "score": 0.9522,
+            "confidence": "high"
+          }
+        ]
+      },
+      "t90": {
+        "status": "completed",
+        "duration_ms": 285.9,
+        "rank_of_truth": 1,
+        "findings": [
+          {
+            "rank": 1,
+            "cause": "memory_pressure",
+            "service": "notification-service",
+            "score": 1.0,
+            "confidence": "high"
+          }
+        ]
+      },
+      "repeat": 0,
+      "recovery_verified_after_reset_s": 176.8
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "anomaly_live_s": 25.0,
+  "incident_live_s": 25.1,
+  "rca_live_s": 45.4,
+  "recovery_verified_after_reset_s": 140.4,
+  "incident_id": 17,
+  "top": "Service slowdown causing timeouts in payment-service",
+  "score": 0.85
+}

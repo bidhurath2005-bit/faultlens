@@ -1,0 +1,12 @@
+[project]
+name = "faultlens-common"
+version = "1.0.0"
+requires-python = ">=3.12"
+description = "Shared telemetry/logging/fault-injection runtime for FaultLens demo services"
+
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["faultlens_common*"]
