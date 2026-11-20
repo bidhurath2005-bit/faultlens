@@ -17,5 +17,5 @@ opentelemetry-instrumentation-httpx==0.66b2
 opentelemetry-instrumentation-asgi==0.66b2
 opentelemetry-semantic-conventions==0.66b2
 opentelemetry-util-http==0.66b2
-email-validator==2.2.0
+email-validator==2.4.0
 opentelemetry-instrumentation-sqlalchemy==0.66b2
